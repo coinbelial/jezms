@@ -3,13 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<groupId>com.thinkgem.jeesite</groupId>
-	<artifactId>jeesite</artifactId>
-	<version>1.2.7</version>
+	<groupId>cn.coinbelial.jezms</groupId>
+	<artifactId>jezms</artifactId>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	
-	<name>JeeSite</name>
-	<url>http://thinkgem.github.com/jeesite</url>
+	<name>jezms</name>
+    <url>https://github.com/coinbelial/rtictl</url>
+	<!--<url>http://thinkgem.github.com/jeesite</url>-->
 	<inceptionYear>2012-2016</inceptionYear>
 	
 	<!-- 项目属性 -->
@@ -69,7 +70,7 @@
 	</repositories>
 	
 	<!-- 设定插件仓库 -->
-	<pluginRepositories> 
+	<pluginRepositories>
 	
 		<pluginRepository>
 			<id>jeesite-repos</id>
@@ -77,7 +78,7 @@
 			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 		</pluginRepository>
 		
-	</pluginRepositories> 
+	</pluginRepositories>
 	
 	<!-- 依赖项定义 -->
 	<dependencies>
@@ -273,8 +274,8 @@
 			<version>${ehcache.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.ehcache</groupId>  
-			<artifactId>ehcache-web</artifactId>  
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache-web</artifactId>
 			<version>${ehcache-web.version}</version>
 		</dependency>
 		<dependency>
@@ -688,6 +689,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.4</version>
+                <!--<encoding>${project.build.sourceEncoding}</encoding>-->
 				<configuration>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
@@ -779,7 +781,7 @@
 						<!-- userfiles/** --><!-- ,/**/*.jsp -->,
 						test/**
 					</warSourceExcludes>
-					<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory><!-- 
+					<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory><!--
 					<webXml>${project.basedir}/target/jspweb.xml</webXml> -->
 					<warName>${project.artifactId}</warName>
 				</configuration>
@@ -814,7 +816,7 @@
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat6-maven-plugin</artifactId>
-				<version>${tomcat.version}</version> 
+				<version>${tomcat.version}</version>
 				<configuration>
 					<port>${webserver.port}</port>
 					<path>/${project.artifactId}</path>
@@ -826,7 +828,7 @@
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>${tomcat.version}</version> 
+				<version>${tomcat.version}</version>
 				<configuration>
 					<port>${webserver.port}</port>
 					<path>/${project.artifactId}</path>
@@ -848,7 +850,7 @@
 					<webAppConfig>
 						<contextPath>/${project.artifactId}</contextPath>
 					</webAppConfig>
-					<systemProperties>  
+					<systemProperties>
 						<systemProperty>
 							<name>org.mortbay.util.URI.charset</name>
 							<value>${project.build.sourceEncoding}</value>
@@ -882,7 +884,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
+				<version>1.7</version>
 			</plugin>
 			
 			<!-- dependency插件 -->
@@ -929,7 +931,7 @@
 								<property name="dbunit.datatype" value="org.dbunit.ext.oracle.Oracle10DataTypeFactory" /> -->
 								
 								<property file="src/main/resources/jeesite.properties" />
-								<sql driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}" 
+								<sql driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}"
 									onerror="continue" encoding="${project.build.sourceEncoding}">
 									<classpath refid="maven.test.classpath" />
 									<transaction src="db/sys/jeesite_${jdbc.type}.sql"/>
@@ -947,24 +949,19 @@
 								</sql>
 								
 								<taskdef name="dbunit" classname="org.dbunit.ant.DbUnitTask" classpathref="maven.test.classpath" />
-								
 								<!-- mysql、mssql -->
 								<dbunit driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}"
 									 password="${jdbc.password}">
-								
 								<!-- oracle
 								<dbunit driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}"
 									password="${jdbc.password}" schema="${jdbc.username}" > -->
-									
 									<dbconfig>
 										<property name="datatypeFactory" value="${dbunit.datatype}" />
 									</dbconfig>
 									<classpath refid="maven.test.classpath" />
 									<operation type="INSERT" src="db/sys/jeesite_data.xls" format="xls" transaction="true"/>
 									<operation type="INSERT" src="db/cms/jeesite_data.xls" format="xls" transaction="true"/>
-									
 								</dbunit>
-								
 							</target>
 						</configuration>
 					</plugin>
@@ -974,11 +971,11 @@
 	</profiles>
 	
 	<!-- 开发者信息 -->
-	<developers>  
+	<developers>
 		<developer>
-			<id>thinkgem</id>
-			<name>WangZhen</name>
-			<email>thinkgem at 163.com</email>
+			<id>jezms</id>
+			<name>coinbelial</name>
+			<email>wx at rti.cn</email>
 			<roles><role>Project lead</role></roles>
 			<timezone>+8</timezone>
 		</developer>
